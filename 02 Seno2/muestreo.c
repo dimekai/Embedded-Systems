@@ -5,9 +5,9 @@
 **/
 
 #include <stdio.h>
-#include "archivos.h"
-#include "procesamiento.h"
-#include "defs.h"
+#include "archivos.h"        // Aqui se declara la funcion guardarDatos
+#include "procesamiento.h"	 // Aqui se declara la funcion generarSeno
+#include "defs.h"			 // Esta la definicion de MUESTRAS
 
 int main(){
 
