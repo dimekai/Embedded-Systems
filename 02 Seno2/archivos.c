@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "defs.h"
+#include "defs.h"	// Esta la definicion de MUESTRAS
 
 void guardarDatos(float datos[])
 {
