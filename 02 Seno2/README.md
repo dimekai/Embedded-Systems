@@ -45,6 +45,35 @@
 		$(CC) $^ -o $@ $(LFLAGS)
 	```
 
+	* Ahora debemos de sustituir la lista de dependencias para: 
+
+	``` muestreo.o procesamiento.o archivos.o ```
+
+	Para poder realizar esto debemos hacer uso de __wildcards__.
+
+		- __wildcards__: Para poder contemplar toda la lista de dependencias antes mostradas debemos utilizar nuestro __wildcard__ de la siguiente forma:
+
+		`src = $(wildcard *.c)`
+
+		Esto específica a todos los archivos .c sin importar que nombre tenga. Si aplicamos esta misma idea para nuestra __lista de dependencias__ vemos el antes y después:
+
+		* Antes:
+
+			``` 
+			$(PROYECTO): muestreo.o procesamiento.o archivos.o
+				$(CC) $^ -o $@ $(LFLAGS)
+			```
+
+		* Después:
+
+		```
+		src = $(wildcard *.c)
+		...
+		...
+		$(PROYECTO): $(src:%.c=%.o)
+			$(CC) $^ -o $@ $(LFLAGS)
+		```
+	
 ## Demostración
 <ol>
 	<li>
