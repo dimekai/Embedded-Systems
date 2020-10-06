@@ -17,6 +17,34 @@
 * `-lm` : Al utilizar el comando `-lm` lo que hace es que _linkear_ los archivos para poder trabajar con ello y que no marque errores.
 * `-Wall`: Al usar este comando, le dice al compilador que nos muestre todos aquellos __warnings__. Esto es útil para visualizar aquellas variables y/o espacios de memoria no usados
 
+## Reglas de patrón
+* `%.o: %.c` : genera todos los archivos `%.o` a partir de todos los archivos `%.c`
+
+* __Variable automáticas__: Nos ayuda a eemplazar un valor específico dentro de los comandos. En el comando, vamos a poner el mismo nombre de la dependencia.
+
+	* $< trae el nombre de la primera dependencia de la regla. Es algo parecido a hacer esto:
+
+	```
+	#target : dependency
+	muestreo.o: muestreo.c
+		$(CC) -c muestreo.c $(CFLAGS)
+	procesamiento.o: procesamiento.c
+		$(CC) -c procesamiento.c $(CFLAGS)
+	archivos.o: archivos.c
+		CC) -c archivos.c $(CFLAGS)
+	```
+
+	* ¿Pero que vamos a hacer en la siguiente __lista de dependencias__?
+
+	``` $(PROYECTO): muestreo.o procesamiento.o archivos.o ```
+
+	* Aqui se necesitan las tres dependencias en el comando. Para ello necesitamos utilizar `$^`, después de ello ponemos `$@`, el cuál hace referencia al nombre del objetivo.
+
+	```
+	$(PROYECTO): muestreo.o procesamiento.o archivos.o
+		$(CC) $^ -o $@ $(LFLAGS)
+	```
+
 ## Demostración
 <ol>
 	<li>
