@@ -6,22 +6,17 @@ CFLAGS=-Wall
 LFLAGS=-lm
 CC=gcc
 
+# Source or file name .c
+src=$(wildcard *.c)
+
 all: $(PROYECTO)
 
+# target : dependency
 %.o: %.c
 	$(CC) -c $< $(CFLAGS)
 
-# target : dependency
-#muestreo.o: muestreo.c
-#	$(CC) -c muestreo.c $(CFLAGS)
-
-#procesamiento.o: procesamiento.c
-#	$(CC) -c procesamiento.c $(CFLAGS)
-
-#archivos.o: archivos.c
-#	$(CC) -c archivos.c $(CFLAGS)
-
-$(PROYECTO): proc1.o
+#$(PROYECTO): DependenciesList
+$(PROYECTO): $(src:%.c=%.o)
 	$(CC) $^ -o $@ $(LFLAGS)
 
 .PHONY: clean
