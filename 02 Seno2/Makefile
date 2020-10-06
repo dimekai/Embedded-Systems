@@ -6,6 +6,9 @@ CFLAGS=-Wall
 LFLAGS=-lm
 CC=gcc
 
+# Source or file name .c
+src=$(wildcard *.c)
+
 all: $(PROYECTO)
 
 %.o: %.c
@@ -21,7 +24,8 @@ all: $(PROYECTO)
 #archivos.o: archivos.c
 #	$(CC) -c archivos.c $(CFLAGS)
 
-$(PROYECTO): muestreo.o procesamiento.o archivos.o
+#$(PROYECTO): muestreo.o procesamiento.o archivos.o
+$(PROYECTO): $(src:%.c=%.o)
 	$(CC) $^ -o $@ $(LFLAGS)
 
 .PHONY: clean
